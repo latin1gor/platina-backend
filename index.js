@@ -12,6 +12,11 @@ const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+app.use((req, res, next) => {
+  res.header('Cache-Control', 'no-store');
+  next();
+});
+
 app.use(cors())
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'static')))

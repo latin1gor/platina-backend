@@ -8,8 +8,8 @@ class DeviceController {
     try{
       let { name, price, typeId, brandId, info } = req.body;
       const img = req.file
-
-      const device = await Device.create({name, price, typeId, brandId, img: img.path})
+      const imgPath = img.path.split("/").pop()
+      const device = await Device.create({name, price, typeId, brandId, img: imgPath})
 
       if(info){
         info = JSON.parse(info)
@@ -33,7 +33,7 @@ class DeviceController {
   async getAll(req, res) {
     let {brandId, typeId, limit, page} = req.query
     page = page || 1
-    limit = limit || 9
+    limit = limit || 8
     let offset = page * limit - limit
     let devices
     if(!brandId && !typeId){

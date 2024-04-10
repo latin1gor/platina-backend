@@ -1,9 +1,8 @@
 import { Router } from "express";
-import TypeController from "../controllers/typeController.js";
 import checkRoleMiddleware from "../middleware/checkRoleMiddleware.js";
+import infoController from "../controllers/infoController.js";
 const router = new Router();
 
-router.post("/", checkRoleMiddleware("ADMIN"), TypeController.create);
-router.get("/", TypeController.getAll);
+router.get("/", checkRoleMiddleware("ADMIN"), infoController.getAllUsers);
 
 export default router;
