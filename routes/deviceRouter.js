@@ -21,4 +21,5 @@ const multParce = multer({storage: storage})
 router.post("/", multParce.single("img") ,deviceController.create);
 router.get("/", deviceController.getAll);
 router.get("/:id", deviceController.getOne);
+router.get("/count", deviceController.getAllCount);
 export default router;
